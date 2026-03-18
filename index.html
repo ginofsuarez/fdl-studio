@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+    <style>
+    body { font-family: 'Inter', sans-serif; background-color: #FDFDFD; }
+    
+    .justify-text-line {
+        text-align: justify;
+        text-align-last: justify;
+        display: block;
+        width: 100%;
+    }
+
+    /* Fondo de cuadrícula arquitectónica */
+    .bg-architecture-grid {
+        background-image: 
+            linear-gradient(to right, rgba(170, 184, 192, 0.1) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(170, 184, 192, 0.1) 1px, transparent 1px);
+        background-size: 40px 40px;
+    }
+    
+</style>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gino Suarez | Senior Oracle APEX Consultant</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+    theme: {
+        extend: {
+            colors: {
+                'brand-dark': '#59778B',
+                'brand-muted': '#AAB8C0',
+                'brand-bg': '#FDFDFD',
+                'brand-me': '#f0f8ff',
+                'brand-accent': '#653366' /* Nuevo color púrpura */
+            }
+        }
+    }
+}
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #FDFDFD; }
+    </style>
+</head>
+<body class="text-slate-800">
+
+    <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-md border-b border-slate-100 z-50">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#home" class="flex items-center gap-3 group">
+                <img src="fdl-logo.jpg" alt="FDL Logo" class="h-10 w-auto">
+                <div class="flex flex-col w-min">
+                    <span class="text-xl font-bold leading-none tracking-tighter text-brand-dark uppercase whitespace-nowrap">
+                        fdl studio
+                    </span>
+                    <span class="text-[11.5px] font-black uppercase text-brand-accent leading-none mt-1 w-full flex justify-between [text-align-last:justify]">
+                        apex specialists
+                    </span>
+                </div>                
+            </a>
+            <div class="hidden md:flex space-x-8 text-xs font-bold uppercase tracking-widest">
+                <a href="#home" class="nav-link text-brand-dark hover:text-brand-accent transition-colors duration-300">Home</a>
+                <a href="#services" class="nav-link text-brand-dark hover:text-brand-accent transition-colors duration-300">Services</a>
+                <a href="#insights" class="nav-link text-brand-dark hover:text-brand-accent transition-colors duration-300">Insights</a>
+                <a href="#workflow" class="nav-link text-brand-dark hover:text-brand-accent transition-colors duration-300">Workflow</a>
+                <a href="#contact" class="nav-link text-brand-dark hover:text-brand-accent transition-colors duration-300">Contact</a>
+            </div>
+        </div>        
+    </nav>
+
+    <!-- <div class="flex items-center gap-6 mt-12 justify-center md:justify-start grayscale hover:grayscale-0 transition-all duration-500 opacity-70">
+            <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-muted">Project Footprint</span>
+            <div class="flex gap-3">
+                <span class="text-xl" title="Canada">🇨🇦</span>
+                <span class="text-xl" title="USA">🇺🇸</span>
+                <span class="text-xl" title="Peru">🇵🇪</span>
+            </div>
+        </div> -->
+
+<div class="fixed top-[73px] w-full bg-slate-50/90 backdrop-blur-md border-b border-slate-100 z-40 grayscale hover:grayscale-0 transition-all duration-500 opacity-90">
+    <div class="max-w-6xl mx-auto px-6 py-1 flex justify-end items-center gap-6">
+        <span class="text-[9px] font-bold uppercase tracking-[0.3em] text-brand-muted">
+            Select language
+        </span>
+        
+        <div class="flex gap-4 text-lg items-center">
+            <a href="?lang=en-ca" class="hover:scale-125 transition-transform duration-300" title="Canada">🇨🇦</a>
+            <a href="?lang=en-us" class="hover:scale-125 transition-transform duration-300" title="USA">🇺🇸</a>
+            <a href="?lang=es-es" class="hover:scale-125 transition-transform duration-300" title="España">🇪🇸</a>            
+        </div>
+    </div>
+</div>
+
+
+    <section id="home" class="min-h-screen flex items-center pt-20 px-6 bg-architecture-grid">
+        <div class="max-w-4xl mx-auto">
+            <p class="text-brand-dark font-semibold mb-4 uppercase tracking-[0.3em] text-xs">Senior Consulting</p>
+            <h1 class="text-5xl md:text-7xl font-bold text-slate-900 leading-tight mb-8">
+                Oracle APEX <br><span class="text-brand-dark">Experts.</span>
+            </h1>
+            <p class="text-xl text-slate-500 leading-relaxed max-w-2xl mb-12">
+                From strategic mapping to technical delivery, we ensure your business vision remains the blueprint for the architecture.
+            </p>
+            
+            <a href="#workflow" class="text-lg md:text-xl font-medium text-slate-900 hover:text-brand-dark transition-colors flex items-center gap-3 group">
+                From initial concept to final completion: See how we work.
+                <span class="text-brand-dark group-hover:translate-x-2 transition-transform duration-300">→</span>
+            </a>
+        </div>
+    </section>
+
+    <section id="services" class="py-32 bg-slate-50 px-6 border-y border-slate-100">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-xs font-bold text-brand-muted uppercase tracking-[0.3em] mb-16">Services</h2>
+            <div class="grid md:grid-cols-3 gap-16">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">APEX Development</h3>
+                    <p class="text-slate-500 leading-relaxed">Secure, enterprise-grade low-code applications designed for complex business processes.</p>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">Core PL/SQL</h3>
+                    <p class="text-slate-500 leading-relaxed">Advanced database logic, performance tuning, and high-stakes data handling.</p>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">IT Strategy</h3>
+                    <p class="text-slate-500 leading-relaxed">Technical leadership for mining, fintech, and government-scale infrastructures.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="insights" class="py-32 px-6">
+    <div class="max-w-6xl mx-auto">
+        <h2 class="text-xs font-bold text-brand-muted uppercase tracking-[0.3em] mb-12">Technical Insights</h2>
+        <div class="grid md:grid-cols-2 gap-8">
+            <div class="p-8 border-l-4 border-brand-accent bg-brand-bg shadow-sm">
+                <p class="text-xs font-mono text-brand-muted mb-2 uppercase">DB Best Practice</p>
+                <h4 class="text-xl font-bold mb-4 text-slate-900">Safe Table Truncation</h4>
+                <p class="text-slate-600 mb-4">In Oracle, the trade-off between DELETE and TRUNCATE is performance vs. recoverability. As long as the goal is to empty the table without audit triggers, TRUNCATE remains the standard for performance.</p>
+            </div>
+            <div class="p-8 border-l-4 border-brand-accent bg-slate-50 shadow-sm opacity-90">
+                <p class="text-xs font-mono text-brand-muted mb-2 uppercase">APEX Tip</p>
+                <h4 class="text-xl font-bold mb-4 text-slate-900">Session State Handling</h4>
+                <p class="text-slate-600 mb-4">Managing collections and session state correctly is critical for data integrity in multi-step application workflows.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <section id="workflow" class="py-32 bg-brand-dark text-white px-6">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-xs font-bold text-brand-muted uppercase tracking-[0.3em] mb-16 text-center">The Workflow</h2>
+            <div class="space-y-12">
+                <div class="flex gap-6">
+                    <span class="text-3xl font-light opacity-30">01</span>
+                    <div>
+                        <h4 class="text-xl font-bold mb-2">The Concept</h4>
+                        <p class="text-brand-muted">Initial analysis and architectural mapping of your business requirements.</p>
+                    </div>
+                </div>
+                <div class="flex gap-6">
+                    <span class="text-3xl font-light opacity-30">02</span>
+                    <div>
+                        <h4 class="text-xl font-bold mb-2">The Build</h4>
+                        <p class="text-brand-muted">Rapid APEX deployment and robust PL/SQL development.</p>
+                    </div>
+                </div>
+                <div class="flex gap-6">
+                    <span class="text-3xl font-light opacity-30">03</span>
+                    <div>
+                        <h4 class="text-xl font-bold mb-2">Completion</h4>
+                        <p class="text-brand-muted">Final delivery of a high-performance, maintainable enterprise system.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>    
+
+    <section id="contact" class="py-32 bg-slate-900 text-white px-6">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center">
+            <div class="text-center md:text-left mb-10 md:mb-0">
+                <h2 class="text-4xl font-bold mb-4">Ready to start?</h2>
+                <p class="text-brand-muted">Strategic consulting for global operations.</p>
+            </div>
+            <div class="text-center md:text-right">
+                <a href="mailto:hola@ginodev.ca" class="text-2xl font-light hover:text-brand-muted transition underline underline-offset-8 decoration-brand-dark">
+                    contact@fdlstudio.net
+                </a>
+                <p class="mt-8 text-slate-500 text-xs uppercase tracking-widest">Quebec · Canada</p>
+            </div>
+        </div>
+    </section>
+
+</body>
+<script>
+    const sections = document.querySelectorAll("section");
+    const navLinks = document.querySelectorAll(".nav-link");
+
+    const observerOptions = {
+        root: null,
+        threshold: 0.5, // Se activa cuando el 50% de la sección es visible
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                const id = entry.target.getAttribute("id");
+                
+                navLinks.forEach((link) => {
+                    // Quitamos el color de acento y volvemos al color oscuro base
+                    link.classList.remove("text-brand-accent");
+                    link.classList.add("text-brand-dark");
+                    
+                    // Si el href coincide con la sección actual, aplicamos el acento
+                    if (link.getAttribute("href") === `#${id}`) {
+                        link.classList.add("text-brand-accent");
+                        link.classList.remove("text-brand-dark");
+                    }
+                });
+            }
+        });
+    }, observerOptions);
+
+    sections.forEach((section) => observer.observe(section));
+</script>
+</html>
