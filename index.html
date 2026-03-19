@@ -12,15 +12,6 @@
         display: block;
         width: 100%;
     }
-
-    /* Fondo de cuadrícula arquitectónica */
-    .bg-architecture-grid {
-        background-image:
-            linear-gradient(to right, rgba(170, 184, 192, 0.1) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(170, 184, 192, 0.1) 1px, transparent 1px);
-        background-size: 40px 40px;
-        background-color: #f1efed;
-    }
 </style>
 
 <head>
@@ -28,6 +19,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gino Suarez | Senior Oracle APEX Consultant</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
@@ -57,6 +50,8 @@
 </head>
 
 <body class="text-slate-800">
+
+    <canvas id="bg-canvas" class="fixed inset-0 z-[-1] w-full h-full pointer-events-none bg-[#f1efed]"></canvas>
 
     <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-md border-b border-slate-100 z-50">
     <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
@@ -108,8 +103,8 @@
         </div>
     </div>
 
-
-    <section id="home" class="min-h-screen flex items-center pt-20 px-6 bg-architecture-grid">
+    
+    <section id="home" class="min-h-screen flex items-center pt-20 px-6">
         <div class="max-w-4xl mx-auto">
             <p class="text-brand-dark font-semibold mb-4 uppercase tracking-[0.3em] text-xs">Senior Consulting</p>
             <h1 class="text-5xl md:text-7xl font-bold text-slate-900 leading-tight mb-8">
@@ -324,6 +319,76 @@
     window.addEventListener('resize', () => {
         const activeLink = document.querySelector('.nav-link.text-white');
         if (activeLink) moveIndicator(activeLink);
+    });
+</script>
+
+<script>
+    // --- Configuración de la Escena 3D ---
+    const canvas = document.getElementById('bg-canvas');
+    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(window.devicePixelRatio);
+
+    const scene = new THREE.Scene();
+
+    // Cámara con perspectiva
+    const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+    // Posicionamos la cámara arriba mirando ligeramente en diagonal hacia abajo
+    camera.position.set(0, 15, 30);
+    camera.lookAt(0, 0, 0);
+
+    // --- Creación de la Malla (Grid) ---
+    // Plano de 150x150 de ancho, dividido en 60x60 cuadritos
+    const geometry = new THREE.PlaneGeometry(150, 150, 60, 60);
+    
+    // Material tipo wireframe con tu color brand-muted (#AAB8C0)
+    const material = new THREE.MeshBasicMaterial({
+        color: 0xAAB8C0,
+        wireframe: true,
+        transparent: true,
+        opacity: 0.35 // Ajusta la transparencia aquí
+    });
+
+    const plane = new THREE.Mesh(geometry, material);
+    plane.rotation.x = -Math.PI / 2; // Lo acostamos en el piso
+    scene.add(plane);
+
+    // --- Animación de Ondas ---
+    const clock = new THREE.Clock();
+
+    function animate() {
+        requestAnimationFrame(animate);
+        const time = clock.getElapsedTime();
+
+        // Accedemos a los vértices (puntos) de la malla
+        const positions = plane.geometry.attributes.position;
+
+        for (let i = 0; i < positions.count; i++) {
+            const x = positions.getX(i);
+            const y = positions.getY(i);
+            
+            // Fórmula matemática para el oleaje (Gaussiano / Senoidal)
+            // Combinamos sin() y cos() en diferentes ejes para un movimiento fluido
+            const waveX = Math.sin(x * 0.15 + time * 0.8) * 1.5;
+            const waveY = Math.cos(y * 0.15 + time * 0.8) * 1.5;
+            
+            // Aplicamos la altura (eje Z en la geometría)
+            positions.setZ(i, waveX + waveY);
+        }
+
+        // Le decimos a Three.js que los vértices cambiaron
+        positions.needsUpdate = true;
+        
+        renderer.render(scene, camera);
+    }
+    
+    animate(); // Iniciamos el loop
+
+    // --- Responsividad ---
+    window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
     });
 </script>
 
