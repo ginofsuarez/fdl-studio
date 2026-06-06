@@ -1,0 +1,5 @@
+﻿{
+  "Description": "Domain ownership verification file for Microsoft 365 - place in the website root",
+  "Domain": "fdlstudio.net",
+  "Id": "b80f81af-e7ea-474b-9cd6-f985d01db796"
+}
