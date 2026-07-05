@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth snap-y snap-mandatory h-screen overflow-y-scroll">
+<style>
+    body {
+        font-family: 'Inter', sans-serif;
+        background-color: #FDFDFD;
+    }
+
+    .justify-text-line {
+        text-align: justify;
+        text-align-last: justify;
+        display: block;
+        width: 100%;
+    }
+</style>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gino Suarez | Senior Oracle APEX Consultant</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-dark': '#59778B',
+                        'brand-ora': '#C74634',
+                        'brand-ora': '#ff791b',
+                        'brand-muted': '#141413',
+                        'brand-muted-ora': '#F8F8F8',
+                        'brand-bg': '#FDFDFD',
+                        'brand-me': '#f0f8ff',
+                        'brand-accent': '#653366',
+                        'brand-ai': '#282A3A',
+                        'brand-anthropic': '#E4DBCD',
+                        'brand-bg-anthropic': '#F0EEE6'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: #FDFDFD;
+        }
+    </style>
+</head>
+
+<body class="text-slate-800">
+
+    <canvas id="bg-canvas" class="fixed inset-0 z-[-1] w-full h-full pointer-events-none bg-[#f1efed]"></canvas>
+
+    <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-md border-b border-slate-100 z-50">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#home" class="flex items-center gap-3 group">
+                <img src="fdl-logo.jpg" alt="FDL Logo" class="h-10 w-auto">
+                <div class="flex flex-col w-min">
+                    <span
+                        class="text-xl font-bold leading-none tracking-tighter text-brand-dark uppercase whitespace-nowrap">
+                        fdl studio
+                    </span>
+                    <span
+                        class="text-[11.5px] font-black uppercase text-brand-dark leading-none mt-1 w-full flex justify-between [text-align-last:justify]">
+                        apex experts
+                    </span>
+                </div>
+            </a>
+
+            <div class="hidden md:flex items-center relative space-x-4 text-xs font-bold uppercase tracking-widest">
+                <div id="nav-indicator"
+                    class="absolute h-9 bg-brand-ora rounded-lg transition-all duration-300 ease-in-out z-0"></div>
+
+                <a href="#home"
+                    class="nav-link relative z-10 px-4 py-2 text-brand-dark transition-colors duration-300">Home</a>
+                <a href="#services"
+                    class="nav-link relative z-10 px-4 py-2 text-brand-dark transition-colors duration-300">Services</a>
+                <a href="#workflow"
+                    class="nav-link relative z-10 px-4 py-2 text-brand-dark transition-colors duration-300">Workflow</a>
+                <a href="#contact"
+                    class="nav-link relative z-10 px-4 py-2 text-brand-dark transition-colors duration-300">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- <div class="flex items-center gap-6 mt-12 justify-center md:justify-start grayscale hover:grayscale-0 transition-all duration-500 opacity-70">
+            <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-muted">Project Footprint</span>
+            <div class="flex gap-3">
+                <span class="text-xl" title="Canada">🇨🇦</span>
+                <span class="text-xl" title="USA">🇺🇸</span>
+                <span class="text-xl" title="Peru">🇵🇪</span>
+            </div>
+        </div> -->
+
+    <div
+        class="fixed top-[73px] w-full bg-slate-50/90 backdrop-blur-md border-b border-slate-100 z-40 grayscale hover:grayscale-0 transition-all duration-500 opacity-90">
+        <div class="max-w-6xl mx-auto px-6 py-1 flex justify-end items-center gap-6">
+            <span class="text-[9px] font-bold uppercase tracking-[0.3em] text-brand-muted">
+                Select language
+            </span>
+
+            <div class="flex gap-4 text-lg items-center">
+                <a href="?lang=en-ca" class="hover:scale-125 transition-transform duration-300" title="Canada">🇨🇦</a>
+                <a href="?lang=en-us" class="hover:scale-125 transition-transform duration-300" title="USA">🇺🇸</a>
+                <a href="?lang=es-es" class="hover:scale-125 transition-transform duration-300" title="España">🇪🇸</a>
+            </div>
+        </div>
+    </div>
+
+
+    <section id="home" class="snap-start shrink-0 min-h-screen flex items-center pt-20 px-6 relative">
+        <div class="max-w-4xl mx-auto relative z-10">
+            <p class="text-brand-dark font-semibold mb-4 uppercase tracking-[0.3em] text-xs">Senior Consulting</p>
+            <h1 class="text-5xl md:text-7xl font-bold text-slate-900 leading-tight mb-8">
+                Oracle APEX <br><span class="text-brand-ora">Experts.</span>
+            </h1>
+            <p class="text-xl text-slate-500 leading-relaxed max-w-2xl mb-12">
+                AI-Assisted development. APEX eliminates the burden of managing frameworks, libraries, and
+                infrastructure, so we can focus on solving real business problems.
+            </p>
+
+            <a href="#workflow"
+                class="text-lg md:text-xl font-medium text-slate-900 hover:text-brand-dark transition-colors flex items-center gap-3 group">
+                moving from idea to impact with ease: See how we work.
+                <span class="text-brand-dark group-hover:translate-x-2 transition-transform duration-300">→</span>
+            </a>
+        </div>
+
+        <!-- Smooth color transition to services section -->
+        <div class="absolute bottom-0 left-0 w-full h-64 md:h-[50vh] pointer-events-none z-0"
+            style="background: linear-gradient(to top, #282A3A 0%, rgba(40, 42, 58, 0.738) 40%, rgba(40, 42, 58, 0.382) 65%, rgba(40, 42, 58, 0.194) 80%, rgba(40, 42, 58, 0.042) 93%, transparent 100%);">
+        </div>
+    </section>
+
+    <!-- <section class="py-12 px-6 border-b border-slate-200">
+        <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
+            
+            <p class="text-lg md:text-xl font-bold text-slate-900 leading-tight md:max-w-3xl">
+                Oracle APEX named a Leader in the 2025 Low Code Application Platform (LCAP) Technology Value Matrix by Nucleus Research
+            </p>
+            
+            <a href="https://www.oracle.com/apex/low-code-application-platform-tech-value-matrix/?source=:ow:o:s:po:::APEX_App_Dev&intcmp=:ow:o:s:po:::APEX_App_Dev" 
+            target="_blank" 
+            class="bg-[#2d2a26] text-white px-8 py-3 rounded-md font-medium text-sm hover:bg-slate-700 transition-colors duration-300 whitespace-nowrap shadow-sm">
+                Read the Report
+            </a>
+            
+        </div>
+    </section> -->
+
+    <section id="services"
+        class="snap-start shrink-0 w-full min-h-screen lg:h-screen p-0 m-0 bg-brand-ai lg:overflow-hidden border-b border-slate-100 relative">
+
+        <div class="max-w-6xl mx-auto px-6 h-full relative flex flex-col pt-32 pb-16 lg:pt-0 lg:pb-0">
+
+            <div class="relative lg:absolute lg:top-36 lg:left-6 z-30 pointer-events-none mb-8 lg:mb-0">
+                <h2 class="text-white lg:ml-6 text-xl lg:text-xl font-black uppercase tracking-[0.2em] leading-none opacity-40">
+                    Services
+                </h2>
+            </div>
+
+            <div
+                class="flex flex-col gap-6 w-full lg:grid lg:grid-cols-4 lg:gap-0 lg:h-full mt-4 lg:mt-0 relative z-20 flex-grow">
+
+                <a href="#enterprise"
+                    class="relative group block min-h-[30vh] lg:min-h-0 lg:h-full w-full overflow-hidden border border-white/10 lg:border-y-0 lg:border-l-0 lg:border-r lg:border-white/5 rounded-2xl lg:rounded-none bg-[#343647] lg:bg-transparent shadow-lg lg:shadow-none p-6 lg:p-0">
+                    <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=2400"
+                        class="hidden lg:block absolute top-0 bottom-0 h-full w-[400%] max-w-none left-0 object-cover grayscale opacity-20 group-hover:grayscale-0 group-hover:opacity-70 group-hover:scale-105 transition-all duration-[2s] ease-out">
+
+                    <div
+                        class="hidden lg:block absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 lg:via-transparent to-transparent group-hover:from-brand-ora/20 transition-all duration-1000">
+                    </div>
+
+                    <div class="relative lg:absolute inset-x-0 bottom-0 lg:p-12 z-10 text-left">
+                        <span
+                            class="text-brand-ora text-3xl lg:text-4xl font-bold tracking-[0.2em] uppercase mb-4 block opacity-100 lg:opacity-0 group-hover:opacity-100 transition-all duration-700">01</span>
+                        <h3
+                            class="text-white text-2xl lg:text-3xl font-bold mb-3 lg:mb-6 tracking-tighter transform lg:translate-y-16 group-hover:translate-y-0 transition-transform duration-700 ease-out">
+                            Enterprise <br class="hidden lg:block">APEX Solutions.
+                        </h3>
+                        <p
+                            class="text-white/60 lg:text-white/40 text-sm leading-relaxed max-w-xs opacity-100 lg:opacity-0 group-hover:opacity-100 transform lg:translate-y-8 group-hover:translate-y-0 transition-all duration-700 delay-100">
+                            Transforming complex, manual processes into secure, high-performance web applications. The
+                            "Gold Standard" of business tools.
+                        </p>
+                    </div>
+                </a>
+
+                <a href="#ai"
+                    class="relative group block min-h-[30vh] lg:min-h-0 lg:h-full w-full overflow-hidden border border-white/10 lg:border-y-0 lg:border-l-0 lg:border-r lg:border-white/5 rounded-2xl lg:rounded-none bg-[#343647] lg:bg-transparent shadow-lg lg:shadow-none p-6 lg:p-0">
+                    <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=2400"
+                        class="hidden lg:block absolute top-0 bottom-0 h-full w-[400%] max-w-none left-[-100%] object-cover grayscale opacity-20 group-hover:grayscale-0 group-hover:opacity-70 group-hover:scale-105 transition-all duration-[2s] ease-out">
+
+                    <div
+                        class="hidden lg:block absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 lg:via-transparent to-transparent group-hover:from-brand-ora/20 transition-all duration-1000">
+                    </div>
+
+                    <div class="relative lg:absolute inset-x-0 bottom-0 lg:p-12 z-10 text-left">
+                        <span
+                            class="text-brand-ora text-3xl lg:text-4xl font-bold tracking-[0.2em] uppercase mb-4 block opacity-100 lg:opacity-0 group-hover:opacity-100 transition-all duration-700">02</span>
+                        <h3
+                            class="text-white text-2xl lg:text-3xl font-bold mb-3 lg:mb-6 tracking-tighter transform lg:translate-y-16 group-hover:translate-y-0 transition-transform duration-700 ease-out">
+                            Intelligent <br class="hidden lg:block">Automation.
+                        </h3>
+                        <p
+                            class="text-white/60 lg:text-white/40 text-sm leading-relaxed max-w-xs opacity-100 lg:opacity-0 group-hover:opacity-100 transform lg:translate-y-8 group-hover:translate-y-0 transition-all duration-700 delay-100">
+                            Beyond code: we integrate Applied AI to transform manual data into intelligent systems,
+                            ensuring accuracy where it matters most.
+                        </p>
+                    </div>
+                </a>
+
+                <a href="#devops"
+                    class="relative group block min-h-[30vh] lg:min-h-0 lg:h-full w-full overflow-hidden border border-white/10 lg:border-y-0 lg:border-l-0 lg:border-r lg:border-white/5 rounded-2xl lg:rounded-none bg-[#343647] lg:bg-transparent shadow-lg lg:shadow-none p-6 lg:p-0">
+                    <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=2400"
+                        class="hidden lg:block absolute top-0 bottom-0 h-full w-[400%] max-w-none left-[-200%] object-cover grayscale opacity-20 group-hover:grayscale-0 group-hover:opacity-70 group-hover:scale-105 transition-all duration-[2s] ease-out">
+
+                    <div
+                        class="hidden lg:block absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 lg:via-transparent to-transparent group-hover:from-brand-ora/20 transition-all duration-1000">
+                    </div>
+
+                    <div class="relative lg:absolute inset-x-0 bottom-0 lg:p-12 z-10 text-left">
+                        <span
+                            class="text-brand-ora text-3xl lg:text-4xl font-bold tracking-[0.2em] uppercase mb-4 block opacity-100 lg:opacity-0 group-hover:opacity-100 transition-all duration-700">03</span>
+                        <h3
+                            class="text-white text-2xl lg:text-3xl font-bold mb-3 lg:mb-6 tracking-tighter transform lg:translate-y-16 group-hover:translate-y-0 transition-transform duration-700 ease-out">
+                            DevOps & <br class="hidden lg:block">Cloud Architecture.
+                        </h3>
+                        <p
+                            class="text-white/60 lg:text-white/40 text-sm leading-relaxed max-w-xs opacity-100 lg:opacity-0 group-hover:opacity-100 transform lg:translate-y-8 group-hover:translate-y-0 transition-all duration-700 delay-100">
+                            Bespoke CI/CD pipelines and database-centric cloud infrastructure designed for maximum
+                            reliability and scalability.
+                        </p>
+                    </div>
+                </a>
+
+                <a href="#strategy"
+                    class="relative group block min-h-[30vh] lg:min-h-0 lg:h-full w-full overflow-hidden border border-white/10 lg:border-y-0 lg:border-l-0 lg:border-r lg:border-white/5 rounded-2xl lg:rounded-none bg-[#343647] lg:bg-transparent shadow-lg lg:shadow-none p-6 lg:p-0">
+                    <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=2400"
+                        class="hidden lg:block absolute top-0 bottom-0 h-full w-[400%] max-w-none left-[-300%] object-cover grayscale opacity-20 group-hover:grayscale-0 group-hover:opacity-70 group-hover:scale-105 transition-all duration-[2s] ease-out">
+
+                    <div
+                        class="hidden lg:block absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 lg:via-transparent to-transparent group-hover:from-brand-ora/20 transition-all duration-1000">
+                    </div>
+
+                    <div class="relative lg:absolute inset-x-0 bottom-0 lg:p-12 z-10 text-left">
+                        <span
+                            class="text-brand-ora text-3xl lg:text-4xl font-bold tracking-[0.2em] uppercase mb-4 block opacity-100 lg:opacity-0 group-hover:opacity-100 transition-all duration-700">04</span>
+                        <h3
+                            class="text-white text-2xl lg:text-3xl font-bold mb-3 lg:mb-6 tracking-tighter transform lg:translate-y-16 group-hover:translate-y-0 transition-transform duration-700 ease-out">
+                            Strategic <br class="hidden lg:block">Consulting.
+                        </h3>
+                        <p
+                            class="text-white/60 lg:text-white/40 text-sm leading-relaxed max-w-xs opacity-100 lg:opacity-0 group-hover:opacity-100 transform lg:translate-y-8 group-hover:translate-y-0 transition-all duration-700 delay-100">
+                            Boutique IT leadership for high-compliance sectors. We provide the senior guidance necessary
+                            for global-scale operations.
+                        </p>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+
+
+    <section id="workflow"
+        class="snap-start shrink-0 min-h-screen flex flex-col justify-center py-20 bg-brand-ora text-white px-6">
+        <div class="max-w-4xl mx-auto w-full">
+            <h2 class="text-s font-bold text-brand-muted-ora uppercase tracking-[0.3em] mb-16 text-center">The Workflow
+            </h2>
+            <div class="space-y-12">
+                <div class="flex gap-6">
+                    <span class="text-3xl font-light opacity-30">01</span>
+                    <div>
+                        <h4 class="text-xl font-bold mb-2">The Concept</h4>
+                        <p class="text-brand-muted-ora">Initial analysis and architectural mapping of your business
+                            requirements.</p>
+                    </div>
+                </div>
+                <div class="flex gap-6">
+                    <span class="text-3xl font-light opacity-30">02</span>
+                    <div>
+                        <h4 class="text-xl font-bold mb-2">The Build</h4>
+                        <p class="text-brand-muted-ora">Rapid APEX deployment and robust PL/SQL development.</p>
+                    </div>
+                </div>
+                <div class="flex gap-6">
+                    <span class="text-3xl font-light opacity-30">03</span>
+                    <div>
+                        <h4 class="text-xl font-bold mb-2">Completion</h4>
+                        <p class="text-brand-muted-ora">Final delivery of a high-performance, maintainable enterprise
+                            system.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact"
+        class="snap-start shrink-0 min-h-screen flex flex-col bg-brand-ai text-white px-6 relative overflow-hidden">
+        
+        <!-- Main Contact Content centered in available space -->
+        <div class="flex-grow flex flex-col justify-center max-w-6xl mx-auto w-full">
+            <div class="flex flex-col md:flex-row justify-between items-center md:items-end w-full gap-16 md:gap-0">
+                
+                <!-- Left: Headline -->
+                <div class="text-center md:text-left">
+                    <h2 class="text-5xl md:text-7xl font-bold mb-6 tracking-tighter">Let's build<br><span class="text-brand-ora">the future.</span></h2>
+                    <p class="text-brand-muted text-lg md:text-xl max-w-md mx-auto md:mx-0">
+                        Strategic IT consulting and high-performance solutions for global operations.
+                    </p>
+                </div>
+
+                <!-- Right: Email & Socials -->
+                <div class="text-center md:text-right flex flex-col md:items-end">
+                    <a href="mailto:contact@fdlstudio.net"
+                        class="text-2xl md:text-4xl font-light hover:text-brand-ora transition-colors duration-300 md:mb-12 mb-8 block">
+                        contact@fdlstudio.net
+                    </a>
+                    
+                    <!-- Social Links -->
+                    <div class="flex items-center gap-6 justify-center md:justify-end">
+                        <a href="https://linkedin.com" target="_blank" class="text-brand-muted hover:text-white transition-colors duration-300" title="LinkedIn">
+                            <span class="sr-only">LinkedIn</span>
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd" /></svg>
+                        </a>
+                        <a href="https://x.com" target="_blank" class="text-brand-muted hover:text-white transition-colors duration-300" title="X (Twitter)">
+                            <span class="sr-only">X</span>
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                        </a>
+                        <a href="https://github.com" target="_blank" class="text-brand-muted hover:text-white transition-colors duration-300" title="GitHub">
+                            <span class="sr-only">GitHub</span>
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" /></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Minimalist Footer -->
+        <div class="w-full max-w-6xl mx-auto border-t border-white/10 pt-8 pb-12 flex flex-col md:flex-row justify-between items-center text-[10px] md:text-xs text-brand-muted/50 tracking-[0.2em] md:tracking-[0.3em] uppercase">
+            <p>Quebec · Canada</p>
+            <p class="mt-4 md:mt-0">&copy; 2026 FDL Studio. All rights reserved.</p>
+        </div>
+        
+    </section>
+
+</body>
+<script>
+    const sections = document.querySelectorAll("section");
+    const navLinks = document.querySelectorAll(".nav-link");
+    const indicator = document.getElementById("nav-indicator");
+
+    function moveIndicator(element) {
+        indicator.style.width = `${element.offsetWidth}px`;
+        indicator.style.left = `${element.offsetLeft}px`;
+    }
+
+    const observerOptions = {
+        root: null,
+        threshold: 0.5,
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                const id = entry.target.getAttribute("id");
+
+                navLinks.forEach((link) => {
+                    if (link.getAttribute("href") === `#${id}`) {
+                        // Aplicar color blanco al texto activo
+                        link.classList.add("text-white");
+                        link.classList.remove("text-brand-dark", "text-brand-accent");
+
+                        // Mover el fondo naranja
+                        moveIndicator(link);
+                    } else {
+                        link.classList.remove("text-white");
+                        link.classList.add("text-brand-dark");
+                    }
+                });
+            }
+        });
+    }, observerOptions);
+
+    sections.forEach((section) => observer.observe(section));
+
+    // Ajustar posición si se cambia el tamaño de la ventana
+    window.addEventListener('resize', () => {
+        const activeLink = document.querySelector('.nav-link.text-white');
+        if (activeLink) moveIndicator(activeLink);
+    });
+</script>
+
+<script>
+    // --- Configuración de la Escena 3D ---
+    const canvas = document.getElementById('bg-canvas');
+    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(window.devicePixelRatio);
+
+    const scene = new THREE.Scene();
+
+    // Cámara con perspectiva
+    const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+    // Posicionamos la cámara arriba mirando ligeramente en diagonal hacia abajo
+    camera.position.set(0, 15, 30);
+    camera.lookAt(0, 0, 0);
+
+    // --- Creación de la Malla (Grid) ---
+    // Plano de 150x150 de ancho, dividido en 60x60 cuadritos
+    const geometry = new THREE.PlaneGeometry(150, 150, 60, 60);
+
+    // Material tipo wireframe con tu color brand-muted (#AAB8C0)
+    const material = new THREE.MeshBasicMaterial({
+        color: 0xAAB8C0,
+        wireframe: true,
+        transparent: true,
+        opacity: 0.35 // Ajusta la transparencia aquí
+    });
+
+    const plane = new THREE.Mesh(geometry, material);
+    plane.rotation.x = -Math.PI / 2; // Lo acostamos en el piso
+    scene.add(plane);
+
+    // --- Animación de Ondas ---
+    const clock = new THREE.Clock();
+
+    function animate() {
+        requestAnimationFrame(animate);
+        const time = clock.getElapsedTime();
+
+        // Accedemos a los vértices (puntos) de la malla
+        const positions = plane.geometry.attributes.position;
+
+        for (let i = 0; i < positions.count; i++) {
+            const x = positions.getX(i);
+            const y = positions.getY(i);
+
+            // Fórmula matemática para el oleaje (Gaussiano / Senoidal)
+            // Combinamos sin() y cos() en diferentes ejes para un movimiento fluido
+            const waveX = Math.sin(x * 0.15 + time * 0.8) * 1.5;
+            const waveY = Math.cos(y * 0.15 + time * 0.8) * 1.5;
+
+            // Aplicamos la altura (eje Z en la geometría)
+            positions.setZ(i, waveX + waveY);
+        }
+
+        // Le decimos a Three.js que los vértices cambiaron
+        positions.needsUpdate = true;
+
+        renderer.render(scene, camera);
+    }
+
+    animate(); // Iniciamos el loop
+
+    // --- Responsividad ---
+    window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+</script>
+
+</html>
