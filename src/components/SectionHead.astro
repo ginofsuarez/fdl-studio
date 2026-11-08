@@ -1,0 +1,10 @@
+---
+interface Props { num?: string; title: string; id?: string }
+const { num, title, id } = Astro.props;
+const spaced = num ? num.split('').join(' ') : undefined;
+---
+<header class="section-head">
+  {spaced && <span class="section-head__num" aria-hidden="true">{spaced}</span>}
+  <h2 class="section-head__title" id={id}>{title}</h2>
+  {Astro.slots.has('default') && <div class="section-head__intro lead"><slot /></div>}
+</header>

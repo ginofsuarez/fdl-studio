@@ -1,0 +1,19 @@
+---
+import MapleLeaf from './MapleLeaf.astro';
+import type { Lang } from '../i18n/ui';
+interface Props { lang: Lang }
+const copy = {
+  en: { eyebrow: 'Oracle APEX Consultancy', title: 'We build what matters to your business.', lead: 'Senior consultants for enterprise applications, Oracle Cloud and applied AI. New site in progress.' },
+  es: { eyebrow: 'Consultoría Oracle APEX', title: 'Construimos lo que importa para tu negocio.', lead: 'Consultores senior en aplicaciones empresariales, Oracle Cloud e IA aplicada. Nuevo sitio en construcción.' },
+  fr: { eyebrow: 'Conseil Oracle APEX', title: 'Nous bâtissons ce qui compte pour votre entreprise.', lead: 'Consultants seniors en applications d’entreprise, Oracle Cloud et IA appliquée. Nouveau site en cours.' },
+}[Astro.props.lang];
+---
+<section class="section" style="overflow:hidden; min-height:70vh; display:flex; align-items:center;">
+  <MapleLeaf style="width:min(70vw,640px); right:-8%; bottom:-20%;" />
+  <div class="container relative-content stack-lg">
+    <p class="eyebrow">{copy.eyebrow}</p>
+    <h1 class="display" style="max-width:14ch">{copy.title}</h1>
+    <p class="lead">{copy.lead}</p>
+    <p><a class="btn btn--primary" href="mailto:contact@fdlstudio.net">contact@fdlstudio.net <span class="arrow">→</span></a></p>
+  </div>
+</section>

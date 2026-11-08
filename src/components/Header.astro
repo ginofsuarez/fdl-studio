@@ -1,0 +1,50 @@
+---
+import Logo from './Logo.astro';
+import { languages, localizedPath, useTranslations, type Lang } from '../i18n/ui';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const home = localizedPath('/', lang);
+const links = [
+  { href: `${home}#services`, label: t('nav.services') },
+  { href: `${home}#work`, label: t('nav.work') },
+  { href: `${home}#process`, label: t('nav.process') },
+  { href: `${home}#contact`, label: t('nav.contact') },
+];
+---
+<header class="site-header">
+  <div class="container site-header__inner">
+    <Logo href={home} />
+    <nav class="site-nav" aria-label="Main">
+      {links.map((l) => <a href={l.href}>{l.label}</a>)}
+    </nav>
+    <ul class="lang" aria-label="Language">
+      {(Object.keys(languages) as Lang[]).map((code) => (
+        <li>
+          <a href={localizedPath(Astro.url.pathname, code)} hreflang={code} lang={code}
+             aria-current={code === lang ? 'true' : undefined} title={languages[code]}>{code.toUpperCase()}</a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</header>
+<style>
+  .site-header {
+    position: sticky; top: 0; z-index: 50;
+    background: color-mix(in srgb, var(--color-bg) 92%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--color-line);
+  }
+  .site-header__inner { display: flex; align-items: center; gap: var(--space-6); min-height: 4.5rem; }
+  .site-nav { display: none; gap: var(--space-6); margin-left: auto; font-size: var(--text-sm); }
+  .site-nav a { text-decoration: none; color: var(--color-ink-soft); }
+  .site-nav a:hover { color: var(--color-ink); }
+  .lang { display: flex; gap: var(--space-1); list-style: none; margin: 0 0 0 auto; padding: 0; font-size: var(--text-xs); letter-spacing: 0.08em; }
+  .lang a { display: block; padding: 0.3rem 0.45rem; text-decoration: none; color: var(--color-faint); border-radius: var(--radius-sm); }
+  .lang a:hover { color: var(--color-ink); }
+  .lang a[aria-current] { color: var(--color-ink); background: var(--color-band); font-weight: 600; }
+  @media (min-width: 52rem) {
+    .site-nav { display: flex; }
+    .lang { margin-left: var(--space-4); }
+  }
+</style>
