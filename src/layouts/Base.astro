@@ -27,8 +27,9 @@ const site = Astro.site ?? new URL('https://fdlstudio.net');
       <link rel="alternate" hreflang={code} href={new URL(localizedPath(Astro.url.pathname, code), site)} />
     ))}
     <link rel="alternate" hreflang="x-default" href={new URL(localizedPath(Astro.url.pathname, 'en'), site)} />
-    <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
-    <link rel="icon" href="/favicon-192.png" sizes="192x192" type="image/png" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   </head>
   <body>

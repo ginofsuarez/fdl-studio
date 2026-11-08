@@ -1,20 +1,12 @@
 ---
-interface Props { href?: string; compact?: boolean }
-const { href = '/', compact = false } = Astro.props;
+/* Official horizontal logo from the brand kit (02-logotipo). Do not redraw or recolor. */
+interface Props { href?: string; height?: number }
+const { href = '/', height = 40 } = Astro.props;
+const width = Math.round((380.506 / 88) * height);
 ---
-<a href={href} class="logo" aria-label="FDL Studio">
-  <img src="/brand/fdl-symbol-black.png" alt="" width="220" height="256" class="logo__img" />
-  {!compact && (
-    <span class="logo__text">
-      <span class="logo__name">FDL Studio</span>
-      <span class="logo__tag">Software Consultancy</span>
-    </span>
-  )}
+<a href={href} class="logo">
+  <img src="/brand/fdl-logo-horizontal-color.svg" alt="FDL Studio — Oracle APEX Specialist" width={width} height={height} />
 </a>
 <style>
-  .logo { display: inline-flex; align-items: center; gap: var(--space-3); text-decoration: none; }
-  .logo__img { width: auto; height: 2.5rem; }
-  .logo__text { display: flex; flex-direction: column; line-height: 1; }
-  .logo__name { font-family: var(--font-display); font-weight: 600; font-size: 1.05rem; color: var(--color-ink); }
-  .logo__tag { font-size: 0.56rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-muted); margin-top: 0.3rem; }
+  .logo { display: inline-block; flex: none; line-height: 0; }
 </style>
