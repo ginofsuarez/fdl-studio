@@ -9,6 +9,8 @@ import type { Lang } from '../i18n/ui';
 interface Props { lang: Lang }
 const { lang } = Astro.props;
 const c = home[lang];
+// Highlight the closing punctuation of the hero title in the accent color.
+const titleMatch = c.hero.title.match(/^(.*?)([.!?])?$/s)!;
 const offices = site.offices.map((o) => ({ ...o, countryName: o.country[lang] }));
 ---
 
@@ -17,7 +19,7 @@ const offices = site.offices.map((o) => ({ ...o, countryName: o.country[lang] })
   <MapleLeaf class="hero__leaf" />
   <div class="container relative-content hero__inner">
     <p class="eyebrow">{c.hero.eyebrow}</p>
-    <h1 class="display hero__title">{c.hero.title}</h1>
+    <h1 class="display hero__title">{titleMatch[1]}{titleMatch[2] && <span class="accent">{titleMatch[2]}</span>}</h1>
     <p class="lead">{c.hero.lead}</p>
     <div class="hero__actions">
       <a class="btn btn--primary" href="#contact">{c.hero.primary} <span class="arrow" aria-hidden="true">→</span></a>
@@ -149,6 +151,7 @@ const offices = site.offices.map((o) => ({ ...o, countryName: o.country[lang] })
   .contact__main > * + * { margin-top: var(--space-5); }
   .contact__side > * + * { margin-top: var(--space-4); }
   .contact__side .eyebrow { color: var(--color-ink-soft); }
+  .contact__main .section-head__num { color: var(--color-accent); }
   .offices { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-3); padding-bottom: var(--space-3); }
   .offices li { display: flex; flex-direction: column; }
   @media (min-width: 56rem) { .contact { grid-template-columns: 1.4fr 1fr; gap: var(--space-9); } }
