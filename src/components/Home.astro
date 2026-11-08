@@ -1,0 +1,155 @@
+---
+import MapleLeaf from './MapleLeaf.astro';
+import SectionHead from './SectionHead.astro';
+import SocialLinks from './SocialLinks.astro';
+import { home } from '../i18n/home';
+import { site } from '../config/site';
+import type { Lang } from '../i18n/ui';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const c = home[lang];
+const offices = site.offices.map((o) => ({ ...o, countryName: o.country[lang] }));
+---
+
+<!-- Hero -->
+<section class="hero">
+  <MapleLeaf class="hero__leaf" />
+  <div class="container relative-content hero__inner">
+    <p class="eyebrow">{c.hero.eyebrow}</p>
+    <h1 class="display hero__title">{c.hero.title}</h1>
+    <p class="lead">{c.hero.lead}</p>
+    <div class="hero__actions">
+      <a class="btn btn--primary" href="#contact">{c.hero.primary} <span class="arrow" aria-hidden="true">→</span></a>
+      <a class="btn btn--ghost" href="#services">{c.hero.secondary}</a>
+    </div>
+    <p class="hero__places caption">
+      {offices.map((o, i) => <>{i > 0 && <span aria-hidden="true"> · </span>}{o.city}, {o.countryName}</>)}
+    </p>
+  </div>
+</section>
+
+<!-- 01 Services -->
+<section class="section section--band" id="services" aria-labelledby="services-title">
+  <div class="container">
+    <SectionHead num="01" title={c.services.title} id="services-title">{c.services.intro}</SectionHead>
+    <div class="grid grid--2 services">
+      {c.services.items.map((s, i) => (
+        <article class="card">
+          <span class="card__code">{String(i + 1).padStart(2, '0')}</span>
+          <h3 class="h3">{s.title}</h3>
+          <p class="muted">{s.text}</p>
+          <ul class="card__list">{s.points.map((p) => <li>{p}</li>)}</ul>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- 02 Process -->
+<section class="section" id="process" aria-labelledby="process-title">
+  <div class="container">
+    <SectionHead num="02" title={c.process.title} id="process-title">{c.process.intro}</SectionHead>
+    <ol class="steps" style={`--steps:${c.process.steps.length}`}>
+      {c.process.steps.map((s, i) => (
+        <li class="step">
+          <span class="step__dot" aria-hidden="true">{i + 1}</span>
+          <p class="step__title">{s.title}</p>
+          <p class="step__text">{s.text}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<!-- 03 Engagement models -->
+<section class="section section--surface" aria-labelledby="models-title">
+  <div class="container">
+    <SectionHead num="03" title={c.models.title} id="models-title">{c.models.intro}</SectionHead>
+    <div class="grid grid--3">
+      {c.models.items.map((m) => (
+        <article class="card">
+          <h3 class="h3">{m.title}</h3>
+          <p class="muted">{m.text}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- 04 Work (placeholder content) -->
+<section class="section" id="work" aria-labelledby="work-title">
+  <div class="container">
+    <SectionHead num="04" title={c.work.title} id="work-title">{c.work.intro}</SectionHead>
+    <!-- TODO: replace placeholders with approved client logos, case studies and testimonials -->
+    <ul class="logos" role="list">
+      {[1, 2, 3, 4].map(() => <li class="placeholder">{c.work.logo}</li>)}
+    </ul>
+    <div class="grid grid--2 work">
+      <article class="placeholder placeholder--block">
+        <p class="eyebrow">{c.work.caseTitle}</p>
+        <p class="muted">{c.work.caseText}</p>
+      </article>
+      <blockquote class="placeholder placeholder--block quote">
+        <p>“{c.work.quote}”</p>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- 05 Contact -->
+<section class="section section--band" id="contact" aria-labelledby="contact-title">
+  <div class="container">
+    <div class="contact">
+      <div class="contact__main">
+        <span class="section-head__num" aria-hidden="true">0 5</span>
+        <h2 class="h2" id="contact-title">{c.contact.title}</h2>
+        <p class="lead">{c.contact.lead}</p>
+        <a class="btn btn--primary" href={`mailto:${site.email}`}>{site.email} <span class="arrow" aria-hidden="true">→</span></a>
+      </div>
+      <div class="contact__side callout">
+        <p class="eyebrow">{c.contact.officesLabel}</p>
+        <ul class="offices" role="list">
+          {offices.map((o) => (
+            <li>
+              <strong>{o.countryName}</strong>
+              <span class="small muted">{o.entity} · {o.city}</span>
+            </li>
+          ))}
+        </ul>
+        <p class="eyebrow">{c.contact.followLabel}</p>
+        <SocialLinks />
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero { position: relative; overflow: hidden; padding-block: clamp(4rem, 3rem + 8vw, 9rem); }
+  .hero__inner > * + * { margin-top: var(--space-6); }
+  .hero__title { max-width: 13ch; }
+  .hero__actions { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+  .hero__places { letter-spacing: 0.08em; }
+  :global(.hero__leaf) { width: min(85vw, 620px); right: -14%; bottom: -30%; }
+  @media (min-width: 64rem) { :global(.hero__leaf) { right: -4%; bottom: -18%; } }
+
+  .services { row-gap: var(--space-7); }
+
+  .logos { list-style: none; padding: 0; margin: 0 0 var(--space-6); display: grid; gap: var(--space-4); grid-template-columns: repeat(2, 1fr); }
+  @media (min-width: 48rem) { .logos { grid-template-columns: repeat(4, 1fr); } }
+  .placeholder {
+    display: grid; place-items: center; min-height: 6rem; padding: var(--space-5);
+    border: 1px dashed var(--color-taupe-strong); color: var(--color-faint);
+    font-size: var(--text-sm); text-align: center;
+  }
+  .placeholder--block { place-items: start; align-content: start; gap: var(--space-2); min-height: 11rem; text-align: left; }
+  .quote { margin: 0; font-family: var(--font-display); font-size: var(--text-xl); color: var(--color-muted); }
+
+  .contact { display: grid; gap: var(--space-7); align-items: start; }
+  .contact__main > * + * { margin-top: var(--space-5); }
+  .contact__side > * + * { margin-top: var(--space-4); }
+  .contact__side .eyebrow { color: var(--color-ink-soft); }
+  .offices { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-3); padding-bottom: var(--space-3); }
+  .offices li { display: flex; flex-direction: column; }
+  @media (min-width: 56rem) { .contact { grid-template-columns: 1.4fr 1fr; gap: var(--space-9); } }
+</style>
