@@ -107,7 +107,32 @@ const offices = site.offices.map((o) => ({ ...o, countryName: o.country[lang] })
         <span class="section-head__num" aria-hidden="true">0 5</span>
         <h2 class="h2" id="contact-title">{c.contact.title}</h2>
         <p class="lead">{c.contact.lead}</p>
-        <a class="btn btn--primary" href={`mailto:${site.email}`}>{site.email} <span class="arrow" aria-hidden="true">→</span></a>
+        <form class="contact-form" method="post" data-mailto={site.email} data-subject={c.contact.form.subject}
+              action={site.formEndpoint || `mailto:${site.email}?subject=${encodeURIComponent(c.contact.form.subject)}`}
+              enctype={site.formEndpoint ? undefined : 'text/plain'}>
+          <div class="contact-form__row">
+            <label class="field">
+              <span class="field__label">{c.contact.form.name}</span>
+              <input class="field__input" type="text" name="name" autocomplete="name" required />
+            </label>
+            <label class="field">
+              <span class="field__label">{c.contact.form.email}</span>
+              <input class="field__input" type="email" name="email" autocomplete="email" required />
+            </label>
+          </div>
+          <label class="field">
+            <span class="field__label">{c.contact.form.company} <span class="field__optional">{c.contact.form.optional}</span></span>
+            <input class="field__input" type="text" name="company" autocomplete="organization" />
+          </label>
+          <label class="field">
+            <span class="field__label">{c.contact.form.message}</span>
+            <textarea class="field__input" name="message" rows="5" required></textarea>
+          </label>
+          <div class="contact-form__actions">
+            <button class="btn btn--primary" type="submit">{c.contact.form.submit} <span class="arrow" aria-hidden="true">→</span></button>
+            <p class="small muted">{c.contact.form.orWrite} <a href={`mailto:${site.email}`}>{site.email}</a></p>
+          </div>
+        </form>
       </div>
       <div class="contact__side callout">
         <p class="eyebrow">{c.contact.officesLabel}</p>
@@ -125,6 +150,25 @@ const offices = site.offices.map((o) => ({ ...o, countryName: o.country[lang] })
     </div>
   </div>
 </section>
+
+<script>
+  // Without a form backend, compose a readable email in the visitor's mail app.
+  document.querySelectorAll<HTMLFormElement>('form.contact-form[data-mailto]').forEach((form) => {
+    if (!form.action.startsWith('mailto:')) return;
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const d = new FormData(form);
+      const body = [
+        `${d.get('name')} <${d.get('email')}>`,
+        d.get('company') ? String(d.get('company')) : '',
+        '',
+        String(d.get('message') ?? ''),
+      ].filter((l, i) => l !== '' || i === 2).join('\n');
+      const subject = form.dataset.subject ?? '';
+      window.location.href = `mailto:${form.dataset.mailto}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    });
+  });
+</script>
 
 <style>
   .hero { position: relative; overflow: hidden; padding-block: clamp(4rem, 3rem + 8vw, 9rem); }
@@ -149,6 +193,10 @@ const offices = site.offices.map((o) => ({ ...o, countryName: o.country[lang] })
 
   .contact { display: grid; gap: var(--space-7); align-items: start; }
   .contact__main > * + * { margin-top: var(--space-5); }
+  .contact-form { display: grid; gap: var(--space-5); margin-top: var(--space-6) !important; }
+  .contact-form__row { display: grid; gap: var(--space-5); }
+  @media (min-width: 40rem) { .contact-form__row { grid-template-columns: 1fr 1fr; } }
+  .contact-form__actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-4); }
   .contact__side > * + * { margin-top: var(--space-4); }
   .contact__side .eyebrow { color: var(--color-ink-soft); }
   .contact__main .section-head__num { color: var(--color-accent); }

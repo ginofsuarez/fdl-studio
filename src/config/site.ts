@@ -4,6 +4,8 @@
 export const site = {
   name: 'FDL Studio',
   email: 'contact@fdlstudio.net',
+  // TODO: form backend URL (e.g. Formspree). While empty, the contact form opens the visitor's email app.
+  formEndpoint: '',
   social: {
     linkedin: '#', // TODO: real LinkedIn company URL
     github: '#',   // TODO: real GitHub organization URL

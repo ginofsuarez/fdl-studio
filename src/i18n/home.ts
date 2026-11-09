@@ -9,7 +9,10 @@ export type HomeCopy = {
   process: { title: string; intro: string; steps: Step[] };
   models: { title: string; intro: string; items: { title: string; text: string }[] };
   work: { title: string; intro: string; logo: string; caseTitle: string; caseText: string; quote: string };
-  contact: { title: string; lead: string; emailLabel: string; officesLabel: string; followLabel: string };
+  contact: {
+    title: string; lead: string; emailLabel: string; officesLabel: string; followLabel: string;
+    form: { name: string; email: string; company: string; message: string; optional: string; submit: string; orWrite: string; subject: string };
+  };
 };
 
 export const home: Record<Lang, HomeCopy> = {
@@ -80,6 +83,7 @@ export const home: Record<Lang, HomeCopy> = {
       emailLabel: 'Email',
       officesLabel: 'Offices',
       followLabel: 'Follow',
+      form: { name: 'Name', email: 'Work email', company: 'Company', message: 'What do you need to build or improve?', optional: '(optional)', submit: 'Send message', orWrite: 'Or write to us at', subject: 'New inquiry from fdlstudio.net' },
     },
   },
 
@@ -150,6 +154,7 @@ export const home: Record<Lang, HomeCopy> = {
       emailLabel: 'Correo',
       officesLabel: 'Oficinas',
       followLabel: 'Síguenos',
+      form: { name: 'Nombre', email: 'Correo de trabajo', company: 'Empresa', message: '¿Qué necesitas construir o mejorar?', optional: '(opcional)', submit: 'Enviar mensaje', orWrite: 'O escríbenos a', subject: 'Nueva consulta desde fdlstudio.net' },
     },
   },
 
@@ -220,6 +225,7 @@ export const home: Record<Lang, HomeCopy> = {
       emailLabel: 'Courriel',
       officesLabel: 'Bureaux',
       followLabel: 'Suivez-nous',
+      form: { name: 'Nom', email: 'Courriel professionnel', company: 'Entreprise', message: 'Que souhaitez-vous bâtir ou améliorer?', optional: '(facultatif)', submit: 'Envoyer le message', orWrite: 'Ou écrivez-nous à', subject: 'Nouvelle demande depuis fdlstudio.net' },
     },
   },
 };
