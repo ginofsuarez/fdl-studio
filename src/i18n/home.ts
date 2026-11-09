@@ -8,6 +8,7 @@ export type HomeCopy = {
   services: { title: string; intro: string; items: Card[] };
   process: { title: string; intro: string; steps: Step[] };
   models: { title: string; intro: string; items: { title: string; text: string }[] };
+  team: { title: string; intro: string; photo: string };
   work: { title: string; intro: string; logo: string; caseTitle: string; caseText: string; quote: string };
   contact: {
     title: string; lead: string; emailLabel: string; officesLabel: string; followLabel: string;
@@ -18,9 +19,9 @@ export type HomeCopy = {
 export const home: Record<Lang, HomeCopy> = {
   en: {
     hero: {
-      eyebrow: 'Software consultancy · Oracle APEX specialists',
-      title: 'We build what matters to your business.',
-      lead: 'Senior consultants for enterprise applications on Oracle APEX, Oracle Cloud and applied AI, from the first conversation to years of reliable operation.',
+      eyebrow: 'Software engineering · Oracle APEX & AI',
+      title: 'Engineering that understands your business.',
+      lead: 'We get to know your operation from the inside and own every decision that shapes the product: architecture, design, quality. AI helps us move faster; judgment and accountability stay with us.',
       primary: 'Start a conversation',
       secondary: 'See our services',
     },
@@ -69,6 +70,11 @@ export const home: Record<Lang, HomeCopy> = {
         { title: 'Support & operations', text: 'Specialized support for your team and managed Oracle Cloud environments, with clear response times.' },
       ],
     },
+    team: {
+      title: 'Our team',
+      intro: 'A small senior team: you work directly with the people who design and build your system.',
+      photo: 'Photo coming soon',
+    },
     work: {
       title: 'Clients & work',
       intro: 'Selected projects and what our clients say about them.',
@@ -89,9 +95,9 @@ export const home: Record<Lang, HomeCopy> = {
 
   es: {
     hero: {
-      eyebrow: 'Consultoría de software · Especialistas en Oracle APEX',
-      title: 'Construimos lo que importa para tu negocio.',
-      lead: 'Consultores senior en aplicaciones empresariales con Oracle APEX, Oracle Cloud e IA aplicada, desde la primera conversación hasta años de operación confiable.',
+      eyebrow: 'Ingeniería de software · Oracle APEX e IA',
+      title: 'Ingeniería que entiende tu negocio.',
+      lead: 'Conocemos tu operación desde adentro y nos hacemos cargo de cada decisión que define el producto: arquitectura, diseño, calidad. La IA nos ayuda a avanzar más rápido; el criterio y la responsabilidad siguen siendo nuestros.',
       primary: 'Conversemos',
       secondary: 'Ver servicios',
     },
@@ -140,6 +146,11 @@ export const home: Record<Lang, HomeCopy> = {
         { title: 'Soporte y operación', text: 'Soporte especializado para tu equipo y ambientes Oracle Cloud administrados, con tiempos de respuesta claros.' },
       ],
     },
+    team: {
+      title: 'Nuestro equipo',
+      intro: 'Un equipo senior y cercano: trabajas directamente con quienes diseñan y construyen tu sistema.',
+      photo: 'Foto próximamente',
+    },
     work: {
       title: 'Clientes y proyectos',
       intro: 'Proyectos seleccionados y lo que dicen nuestros clientes.',
@@ -160,9 +171,9 @@ export const home: Record<Lang, HomeCopy> = {
 
   fr: {
     hero: {
-      eyebrow: 'Conseil en logiciel · Spécialistes Oracle APEX',
-      title: 'Nous bâtissons ce qui compte pour votre entreprise.',
-      lead: 'Des consultants seniors en applications d’entreprise sur Oracle APEX, Oracle Cloud et IA appliquée, de la première rencontre à des années d’exploitation fiable.',
+      eyebrow: 'Génie logiciel · Oracle APEX et IA',
+      title: 'Une ingénierie qui comprend votre entreprise.',
+      lead: 'Nous apprenons à connaître votre organisation de l’intérieur et assumons chaque décision qui façonne le produit : architecture, conception, qualité. L’IA nous aide à avancer plus vite; le jugement et la responsabilité demeurent les nôtres.',
       primary: 'Discutons',
       secondary: 'Nos services',
     },
@@ -210,6 +221,11 @@ export const home: Record<Lang, HomeCopy> = {
         { title: 'Banque d’heures', text: 'Des heures annuelles pour de nouvelles fonctionnalités et des changements, priorisées par vous et suivies chaque mois.' },
         { title: 'Soutien et exploitation', text: 'Un soutien spécialisé pour votre équipe et des environnements Oracle Cloud gérés, avec des délais de réponse clairs.' },
       ],
+    },
+    team: {
+      title: 'Notre équipe',
+      intro: 'Une petite équipe senior : vous travaillez directement avec ceux qui conçoivent et bâtissent votre système.',
+      photo: 'Photo à venir',
     },
     work: {
       title: 'Clients et réalisations',
