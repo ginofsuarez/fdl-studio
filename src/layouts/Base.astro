@@ -1,0 +1,40 @@
+---
+import '@fontsource/poppins/600.css';
+import '@fontsource/poppins/700.css';
+import '@fontsource-variable/inter';
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { languages, localizedPath, useTranslations, type Lang } from '../i18n/ui';
+
+interface Props { lang: Lang; title?: string; description?: string; noindex?: boolean }
+const { lang, title, description, noindex = false } = Astro.props;
+const t = useTranslations(lang);
+const pageTitle = title ?? t('meta.title');
+const pageDesc = description ?? t('meta.description');
+const site = Astro.site ?? new URL('https://fdlstudio.net');
+---
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDesc} />
+    {noindex && <meta name="robots" content="noindex" />}
+    <link rel="canonical" href={new URL(Astro.url.pathname, site)} />
+    {(Object.keys(languages) as Lang[]).map((code) => (
+      <link rel="alternate" hreflang={code} href={new URL(localizedPath(Astro.url.pathname, code), site)} />
+    ))}
+    <link rel="alternate" hreflang="x-default" href={new URL(localizedPath(Astro.url.pathname, 'en'), site)} />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  </head>
+  <body>
+    <Header lang={lang} />
+    <main><slot /></main>
+    <Footer lang={lang} />
+  </body>
+</html>

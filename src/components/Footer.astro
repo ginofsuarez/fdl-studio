@@ -1,0 +1,29 @@
+---
+import Logo from './Logo.astro';
+import SocialLinks from './SocialLinks.astro';
+import { site } from '../config/site';
+import { localizedPath, useTranslations, type Lang } from '../i18n/ui';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+<footer class="site-footer">
+  <div class="container site-footer__top">
+    <Logo href={localizedPath('/', lang)} />
+    <ul class="site-footer__offices" role="list">
+      {site.offices.map((o) => <li><strong class="small">{o.entity}</strong><span class="caption">{o.city}, {o.country[lang]}</span></li>)}
+    </ul>
+    <SocialLinks />
+  </div>
+  <div class="container site-footer__bottom">
+    <span class="eyebrow">F D L &nbsp;S T U D I O</span>
+    <span class="caption">&copy; {new Date().getFullYear()} FDL Studio. {t('footer.rights')}</span>
+  </div>
+</footer>
+<style>
+  .site-footer { border-top: 1px solid var(--color-line); }
+  .site-footer__top { display: flex; flex-wrap: wrap; gap: var(--space-6); align-items: center; justify-content: space-between; padding-block: var(--space-7) var(--space-6); }
+  .site-footer__offices { display: flex; flex-wrap: wrap; gap: var(--space-6); list-style: none; margin: 0; padding: 0; }
+  .site-footer__offices li { display: flex; flex-direction: column; }
+  .site-footer__bottom { display: flex; flex-wrap: wrap; gap: var(--space-3); justify-content: space-between; padding-block: var(--space-5); background: linear-gradient(var(--color-line), var(--color-line)) top center / calc(100% - 2 * var(--gutter)) 1px no-repeat; }
+</style>
