@@ -10,6 +10,11 @@ export const site = {
     linkedin: '#', // TODO: real LinkedIn company URL
     github: '#',   // TODO: real GitHub organization URL
   },
+  // TODO: real names, roles and photos. Put photos in public/team/ (portrait, 4:5, ~800×1000) and set `photo`.
+  team: [
+    { name: 'Team member', photo: '', role: { en: 'Role', es: 'Cargo', fr: 'Poste' }, linkedin: '' },
+    { name: 'Team member', photo: '', role: { en: 'Role', es: 'Cargo', fr: 'Poste' }, linkedin: '' },
+  ],
   offices: [
     { key: 'canada', entity: 'FDL Studio', city: 'Québec', country: { en: 'Canada', es: 'Canadá', fr: 'Canada' } },
     { key: 'peru', entity: 'FDL LATAM S.A.C.S.', city: 'Lima', country: { en: 'Peru', es: 'Perú', fr: 'Pérou' } }, // TODO: confirm city

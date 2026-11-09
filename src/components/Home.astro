@@ -99,12 +99,30 @@ const offices = site.offices.map((o) => ({ ...o, countryName: o.country[lang] })
   </div>
 </section>
 
-<!-- 05 Contact -->
+<!-- 05 Team -->
+<section class="section section--surface" id="team" aria-labelledby="team-title">
+  <div class="container">
+    <SectionHead num="05" title={c.team.title} id="team-title">{c.team.intro}</SectionHead>
+    <ul class="team" role="list">
+      {site.team.map((m) => (
+        <li class="member">
+          {m.photo
+            ? <img class="member__photo" src={m.photo} alt={m.name} width="800" height="1000" loading="lazy" decoding="async" />
+            : <div class="member__photo placeholder">{c.team.photo}</div>}
+          <p class="member__name">{m.linkedin ? <a href={m.linkedin} rel="noopener" target="_blank">{m.name}</a> : m.name}</p>
+          <p class="small muted">{m.role[lang]}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<!-- 06 Contact -->
 <section class="section section--band" id="contact" aria-labelledby="contact-title">
   <div class="container">
     <div class="contact">
       <div class="contact__main">
-        <span class="section-head__num" aria-hidden="true">0 5</span>
+        <span class="section-head__num" aria-hidden="true">0 6</span>
         <h2 class="h2" id="contact-title">{c.contact.title}</h2>
         <p class="lead">{c.contact.lead}</p>
         <form class="contact-form" method="post" data-mailto={site.email} data-subject={c.contact.form.subject}
@@ -180,6 +198,13 @@ const offices = site.offices.map((o) => ({ ...o, countryName: o.country[lang] })
   @media (min-width: 64rem) { :global(.hero__leaf) { right: -4%; bottom: -18%; } }
 
   .services { row-gap: var(--space-7); }
+
+  .team { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-6); grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr)); max-width: 40rem; }
+  .member__photo { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; background: var(--color-surface); }
+  .member__photo.placeholder { min-height: 0; }
+  .member__name { margin-top: var(--space-4); font-family: var(--font-display); font-weight: 500; color: var(--color-ink); }
+  .member__name a { color: inherit; text-decoration: none; }
+  .member__name a:hover { color: var(--color-accent); }
 
   .logos { list-style: none; padding: 0; margin: 0 0 var(--space-6); display: grid; gap: var(--space-4); grid-template-columns: repeat(2, 1fr); }
   @media (min-width: 48rem) { .logos { grid-template-columns: repeat(4, 1fr); } }
