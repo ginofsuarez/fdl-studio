@@ -1,11 +1,12 @@
 ---
-/* Official horizontal logo from the brand kit (02-logotipo). Do not redraw or recolor. */
-interface Props { href?: string; height?: number }
-const { href = '/', height = 40 } = Astro.props;
+/* Official horizontal logo from the brand kit (02-logotipo). Do not redraw or recolor.
+   `inverse` = same logo with light wordmark, for dark backgrounds. */
+interface Props { href?: string; height?: number; variant?: 'color' | 'inverse' }
+const { href = '/', height = 40, variant = 'color' } = Astro.props;
 const width = Math.round((352.012 / 104) * height);
 ---
 <a href={href} class="logo">
-  <img src="/brand/fdl-logo-horizontal-color.svg" alt="FDL Studio — Oracle APEX Specialist" width={width} height={height} />
+  <img src={`/brand/fdl-logo-horizontal-${variant}.svg`} alt="FDL Studio — Oracle APEX Specialist" width={width} height={height} />
 </a>
 <style>
   .logo { display: inline-block; flex: none; line-height: 0; }

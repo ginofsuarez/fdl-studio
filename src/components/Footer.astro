@@ -2,28 +2,143 @@
 import Logo from './Logo.astro';
 import SocialLinks from './SocialLinks.astro';
 import { site } from '../config/site';
+import { home as homeCopy } from '../i18n/home';
 import { localizedPath, useTranslations, type Lang } from '../i18n/ui';
 interface Props { lang: Lang }
 const { lang } = Astro.props;
 const t = useTranslations(lang);
+const home = localizedPath('/', lang);
+const c = homeCopy[lang];
+
+const columns = [
+  {
+    title: t('footer.services'),
+    links: c.services.items.map((s) => ({ href: `${home}#services`, label: s.title })),
+  },
+  {
+    title: t('footer.company'),
+    links: [
+      { href: `${home}#work`, label: t('nav.work') },
+      { href: `${home}#process`, label: t('nav.process') },
+      { href: `${home}#team`, label: t('footer.team') },
+      { href: `${home}#contact`, label: t('nav.contact') },
+    ],
+  },
+];
 ---
 <footer class="site-footer">
-  <div class="container site-footer__top">
-    <Logo href={localizedPath('/', lang)} />
-    <ul class="site-footer__offices" role="list">
-      {site.offices.map((o) => <li><strong class="small">{o.entity}</strong><span class="caption">{o.city}, {o.country[lang]}</span></li>)}
-    </ul>
-    <SocialLinks />
+  <div class="container site-footer__grid">
+    <div class="site-footer__brand">
+      <Logo href={home} height={44} variant="inverse" />
+      <p>{t('meta.description')}</p>
+      <SocialLinks class="site-footer__social" />
+      <span class="site-footer__copy">&copy; {new Date().getFullYear()} FDL Studio. {t('footer.rights')}</span>
+    </div>
+
+    <nav class="site-footer__cols" aria-label="Footer">
+      {columns.map((col) => (
+        <div>
+          <h2 class="site-footer__title">{col.title}</h2>
+          <ul role="list">
+            {col.links.map((l) => <li><a href={l.href}>{l.label}</a></li>)}
+          </ul>
+        </div>
+      ))}
+      <div>
+        <h2 class="site-footer__title">{t('footer.offices')}</h2>
+        <ul role="list">
+          {site.offices.map((o) => <li><span>{o.entity}</span><span class="site-footer__muted">{o.city}, {o.country[lang]}</span></li>)}
+        </ul>
+      </div>
+    </nav>
+
+    <div class="site-footer__cta">
+      <h2 class="site-footer__title">{t('footer.ctaTitle')}</h2>
+      <p>{t('footer.ctaText')}</p>
+      <div class="site-footer__actions">
+        <a class="site-footer__btn" href={`${home}#contact`}>{t('cta.contact')}</a>
+        <a class="site-footer__mail" href={`mailto:${site.email}`}>{site.email}</a>
+      </div>
+    </div>
   </div>
-  <div class="container site-footer__bottom">
-    <span class="eyebrow">F D L &nbsp;S T U D I O</span>
-    <span class="caption">&copy; {new Date().getFullYear()} FDL Studio. {t('footer.rights')}</span>
-  </div>
+
+  <div class="site-footer__wordmark" aria-hidden="true"><span>fdlstudio</span></div>
 </footer>
 <style>
-  .site-footer { border-top: 1px solid var(--color-line); }
-  .site-footer__top { display: flex; flex-wrap: wrap; gap: var(--space-6); align-items: center; justify-content: space-between; padding-block: var(--space-7) var(--space-6); }
-  .site-footer__offices { display: flex; flex-wrap: wrap; gap: var(--space-6); list-style: none; margin: 0; padding: 0; }
-  .site-footer__offices li { display: flex; flex-direction: column; }
-  .site-footer__bottom { display: flex; flex-wrap: wrap; gap: var(--space-3); justify-content: space-between; padding-block: var(--space-5); background: linear-gradient(var(--color-line), var(--color-line)) top center / calc(100% - 2 * var(--gutter)) 1px no-repeat; }
+  .site-footer {
+    --footer-bg: #1c1a19;
+    --footer-text: #e9e4df;
+    --footer-muted: #a39b94;
+    background: var(--footer-bg);
+    color: var(--footer-text);
+    overflow: hidden;
+  }
+
+  .site-footer__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-7);
+    padding-block: var(--space-9) var(--space-8);
+  }
+
+  /* Brand column */
+  .site-footer__brand { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-5); }
+  .site-footer__brand p { margin: 0; max-width: 22rem; color: var(--footer-text); line-height: var(--leading-body); }
+  .site-footer__copy { font-size: var(--text-sm); color: var(--footer-muted); }
+  .site-footer :global(.site-footer__social a) { color: var(--footer-text); border-color: color-mix(in srgb, var(--footer-text) 35%, transparent); }
+  .site-footer :global(.site-footer__social a:hover) { background: var(--footer-text); color: var(--footer-bg); }
+
+  /* Link columns */
+  .site-footer__cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(9rem, 100%), 1fr)); gap: var(--space-6); }
+  .site-footer__title { margin: 0 0 var(--space-4); font-family: var(--font-body); font-size: var(--text-base); font-weight: 600; color: #fff; letter-spacing: 0; }
+  .site-footer__cols ul { display: flex; flex-direction: column; gap: var(--space-3); list-style: none; margin: 0; padding: 0; }
+  .site-footer__cols li { display: flex; flex-direction: column; line-height: var(--leading-snug); }
+  .site-footer__cols a { color: var(--footer-text); text-decoration: none; transition: color var(--duration) var(--ease); }
+  .site-footer__cols a:hover { color: #fff; text-decoration: underline; text-underline-offset: 0.2em; }
+  .site-footer__muted { font-size: var(--text-sm); color: var(--footer-muted); }
+
+  /* CTA column (in place of Reducto's newsletter) */
+  .site-footer__cta p { margin: 0 0 var(--space-5); color: var(--footer-muted); line-height: var(--leading-body); }
+  .site-footer__actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-4); }
+  .site-footer__btn {
+    display: inline-block; padding: 0.7rem 1.1rem; border-radius: var(--radius-sm);
+    background: var(--color-accent); color: #fff; font-weight: 600; text-decoration: none;
+    transition: background var(--duration) var(--ease);
+  }
+  .site-footer__btn:hover { background: #b5532f; }
+  .site-footer__mail { font-size: var(--text-sm); color: var(--footer-text); text-underline-offset: 0.2em; }
+
+  /* Giant halftone wordmark, cropped at the bottom */
+  .site-footer__wordmark {
+    width: min(100% - 2 * var(--gutter), var(--container));
+    margin-inline: auto;
+    height: 0.68em;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: min(20vw, 16rem);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    text-align: center;
+    overflow: hidden;
+    user-select: none;
+  }
+  .site-footer__wordmark span {
+    display: block;
+    color: transparent;
+    background:
+      radial-gradient(circle, rgb(255 255 255 / 0.14) 0.9px, transparent 1.3px) 0 0 / 5px 5px,
+      linear-gradient(90deg, #b5532f 0%, #8f5a48 45%, #b9a59e 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    opacity: 0.55;
+  }
+
+  @media (min-width: 52rem) {
+    .site-footer__grid { grid-template-columns: 1.2fr 2fr; }
+    .site-footer__cta { grid-column: 2; }
+  }
+  @media (min-width: 72rem) {
+    .site-footer__grid { grid-template-columns: 1.1fr 1.9fr 1.1fr; }
+    .site-footer__cta { grid-column: auto; }
+  }
 </style>
